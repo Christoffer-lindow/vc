@@ -5,6 +5,9 @@ namespace vc.Enums
     Add,
     Commit,
     Status,
+    Message,
+    MessageString,
+    All,
     Invalid
   }
 }
