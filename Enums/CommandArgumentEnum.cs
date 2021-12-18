@@ -4,6 +4,7 @@ namespace vc.Enums
   {
     Add,
     Commit,
-    Status
+    Status,
+    Invalid
   }
 }

@@ -8,6 +8,6 @@ namespace vc.Models
 {
   public interface ICommandArgumentParser
   {
-    CommandArgumentEnum Parse(string argument);
+    CommandArgumentEnum Parse();
   }
 }
