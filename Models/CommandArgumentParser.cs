@@ -10,6 +10,7 @@ namespace vc.Models
 {
   public class CommandArgumentParser : ICommandArgumentParser
   {
+    private const string INIT = "init";
     private const string ADD = "add";
     private const string COMMIT = "commit";
     private const string STATUS = "status";
@@ -35,6 +36,7 @@ namespace vc.Models
     public (CommandArgumentEnum, string) Parse() =>
       _argument.ToLower() switch
       {
+        INIT => CreateReturnTuple(CommandArgumentEnum.Init),
         ADD => CreateReturnTuple(CommandArgumentEnum.Add),
         COMMIT => CreateReturnTuple(CommandArgumentEnum.Commit),
         STATUS => CreateReturnTuple(CommandArgumentEnum.Status),

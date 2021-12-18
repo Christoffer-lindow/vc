@@ -1,0 +1,14 @@
+Files
+.gitignore
+vc.csproj
+Program.cs
+
+Directories
+obj
+bin
+Enums
+Models
+Exceptions
+vc
+.git
+.vscode

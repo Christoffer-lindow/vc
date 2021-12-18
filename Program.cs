@@ -1,12 +1,16 @@
 ﻿using System;
+using vc.Enums;
 using vc.Exceptions;
 using vc.Models;
 
+
+var commandLineArguments = new List<(CommandArgumentEnum, string)>();
 foreach (var argument in args)
 {
-  var a = new CommandArgumentParser(argument);
-  Console.WriteLine(a.Parse());
+  commandLineArguments.Add(new CommandArgumentParser(argument).Parse());
 }
 
-Console.WriteLine(args);
+new CommandHandler(commandLineArguments).Handle();
+
+Console.WriteLine();
 

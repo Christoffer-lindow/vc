@@ -2,6 +2,7 @@ namespace vc.Enums
 {
   public enum CommandArgumentEnum
   {
+    Init,
     Add,
     Commit,
     Status,
