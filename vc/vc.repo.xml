@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<entries>
+  <directory
+    directory="/Users/chris/Projects/csharp/vc/obj"
+    extensions=""
+    last_edited_on="12/18/2021 11:28:14 PM"
+    is_directory="True">obj</directory>
+  <directory
+    directory="/Users/chris/Projects/csharp/vc/bin"
+    extensions=""
+    last_edited_on="12/18/2021 11:28:14 PM"
+    is_directory="True">bin</directory>
+  <directory
+    directory="/Users/chris/Projects/csharp/vc/Enums"
+    extensions=""
+    last_edited_on="12/18/2021 11:35:39 PM"
+    is_directory="True">Enums</directory>
+  <directory
+    directory="/Users/chris/Projects/csharp/vc/Models"
+    extensions=""
+    last_edited_on="12/19/2021 12:33:32 PM"
+    is_directory="True">Models</directory>
+  <directory
+    directory="/Users/chris/Projects/csharp/vc/Exceptions"
+    extensions=""
+    last_edited_on="12/18/2021 11:40:37 PM"
+    is_directory="True">Exceptions</directory>
+  <directory
+    directory="/Users/chris/Projects/csharp/vc/vc"
+    extensions=""
+    last_edited_on="12/19/2021 1:07:55 PM"
+    is_directory="True">vc</directory>
+  <directory
+    directory="/Users/chris/Projects/csharp/vc/.git"
+    extensions=".git"
+    last_edited_on="12/19/2021 2:11:43 AM"
+    is_directory="True">.git</directory>
+  <directory
+    directory="/Users/chris/Projects/csharp/vc/.vscode"
+    extensions=".vscode"
+    last_edited_on="12/18/2021 11:28:21 PM"
+    is_directory="True">.vscode</directory>
+  <file
+    directory="/Users/chris/Projects/csharp/vc/.gitignore"
+    extensions=".gitignore"
+    last_edited_on="12/19/2021 2:11:53 AM"
+    is_directory="False">.gitignore</file>
+  <file
+    directory="/Users/chris/Projects/csharp/vc/vc.csproj"
+    extensions=".csproj"
+    last_edited_on="12/18/2021 11:27:44 PM"
+    is_directory="False">vc.csproj</file>
+  <file
+    directory="/Users/chris/Projects/csharp/vc/Program.cs"
+    extensions=".cs"
+    last_edited_on="12/19/2021 2:11:56 AM"
+    is_directory="False">Program.cs</file>
+</entries>

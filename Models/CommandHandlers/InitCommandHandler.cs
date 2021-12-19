@@ -8,54 +8,40 @@ namespace vc.Models.CommandHandlers
 {
   public class InitCommandHandler
   {
-    private readonly string _currentWorkingFolder;
-    private readonly string[] _files;
-    private readonly string[] _directories;
-    private const string ROOT_VC_DIRECTORY = "vc";
-    private const string REPO_FILE_NAME = "vc.repo.txt";
+    private readonly AbstractVcFileWriter _vcFileWriter;
+    private readonly IVcXmlWriter _vcXmlWriter;
+    private readonly VcDirectory _vcDirectory;
 
-    private string REPO_FILE_PATH => $"{_currentWorkingFolder}/{ROOT_VC_DIRECTORY}/{REPO_FILE_NAME}";
-
-    public InitCommandHandler()
+    public InitCommandHandler(AbstractVcFileWriter vcFileWriter, IVcXmlWriter xmlWriter)
     {
-      _currentWorkingFolder = Directory.GetCurrentDirectory();
-      _files = Directory.GetFiles(_currentWorkingFolder);
-      _directories = Directory.GetDirectories(_currentWorkingFolder);
+      _vcFileWriter = vcFileWriter;
+      _vcXmlWriter = xmlWriter;
+      _vcDirectory = new VcDirectory(_vcFileWriter.GetFiles(), _vcFileWriter.GetDirectories());
     }
 
-    private bool RootVcDirectoryExists() =>
-      _directories.Any(directory => directory == ROOT_VC_DIRECTORY);
-
-    private bool CreateRootVcDirectory() =>
-      Directory.CreateDirectory($"{_currentWorkingFolder}/{ROOT_VC_DIRECTORY}").Exists;
-    private void AddText(FileStream fs, string value)
+    private List<RepoEntry> GetRepoEntryList()
     {
-      var formattedValue = value.Replace(_currentWorkingFolder + "/", "");
-      byte[] info = new UTF8Encoding(true).GetBytes(formattedValue + '\n');
-      fs.Write(info, 0, info.Length);
-    }
-    private void InitRepoFile() =>
-      File.Create($"{_currentWorkingFolder}/{ROOT_VC_DIRECTORY}/{REPO_FILE_NAME}").Close();
-
-    private void WriteFileStructure()
-    {
-
-      using (FileStream fs = File.Open(REPO_FILE_PATH, FileMode.Create))
+      var repoEntries = new List<RepoEntry>();
+      foreach (var item in _vcDirectory.Directories)
       {
-        AddText(fs, "Files");
-        Array.ForEach(_files, file => AddText(fs, file));
-        AddText(fs, "\nDirectories");
-        Array.ForEach(_directories, directory => AddText(fs, directory));
+        repoEntries.Add(new(item.FullName, item.Name, item.Extension, item.LastWriteTime, true));
       }
+      foreach (var item in _vcDirectory.Files)
+      {
+        repoEntries.Add(new(item.FullName, item.Name, item.Extension, item.LastWriteTime, false));
+      }
+      return repoEntries;
     }
+
     public void Handle()
     {
-      if (!RootVcDirectoryExists())
+      if (!_vcFileWriter.VcRootDirectoryExists())
       {
-        CreateRootVcDirectory();
-        InitRepoFile();
+        _vcFileWriter.CreateVcRootDirectory();
+        _vcFileWriter.CreateVcRootFile();
       }
-      WriteFileStructure();
+
+      _vcXmlWriter.WriteRepoFile(VcFileWriter.RepoFilePath, GetRepoEntryList());
     }
   }
 }

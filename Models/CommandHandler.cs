@@ -30,7 +30,7 @@ namespace vc.Models
     private void StringifyArguments() =>
       Array.ForEach(_commandArguments.ToArray(), (type) => builder.Append(type.Item1));
 
-    private void HandleInit() => new InitCommandHandler().Handle();
+    private void HandleInit() => new InitCommandHandler(new VcFileWriter(), new VcXmlWriter()).Handle();
     public void Handle()
     {
       if (String.IsNullOrEmpty(_stringRepresentation))
